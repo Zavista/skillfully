@@ -8,7 +8,7 @@ import * as dynamoose from 'dynamoose';
 import { is } from 'date-fns/locale';
 
 /* Routes Imports */
-
+import coursesRoutes from './routes/coursesRoutes';
 
 /* Configurations */
 dotenv.config();
@@ -33,6 +33,8 @@ app.use(cors());
 app.get("/", (req, res) => {
     res.send("Hello, World!");
 });
+
+app.use('/courses', coursesRoutes);
 
 
 /* Server */
