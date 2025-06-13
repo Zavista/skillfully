@@ -49,7 +49,6 @@ const Landing = () => {
   const handleCourseClick = (courseId: string) => {
     router.push(`/search?id=${courseId}`);
   };
-  console.log(courses);
 
   if (isLoading) {
     return <LoadingSkeleton />;
