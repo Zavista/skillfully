@@ -6,7 +6,11 @@ import helmet from "helmet";
 import morgan from "morgan";
 import * as dynamoose from "dynamoose";
 import { is } from "date-fns/locale";
-import { createClerkClient } from "@clerk/express";
+import {
+  clerkMiddleware,
+  createClerkClient,
+  requireAuth,
+} from "@clerk/express";
 
 /* Routes Imports */
 import coursesRoutes from "./routes/coursesRoutes";
@@ -33,6 +37,7 @@ app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+app.use(clerkMiddleware());
 
 /* Routes */
 app.get("/", (req, res) => {
@@ -40,7 +45,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/courses", coursesRoutes);
-app.use("/users/clerk", userClerkRoutes);
+app.use("/users/clerk", requireAuth(), userClerkRoutes);
 
 /* Server */
 const PORT = process.env.PORT || 8001;
