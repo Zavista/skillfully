@@ -6,10 +6,11 @@ import helmet from "helmet";
 import morgan from "morgan";
 import * as dynamoose from "dynamoose";
 import { is } from "date-fns/locale";
-import { createClerkClient } from "@/clerk/express";
+import { createClerkClient } from "@clerk/express";
 
 /* Routes Imports */
 import coursesRoutes from "./routes/coursesRoutes";
+import userClerkRoutes from "./routes/userClerkRoutes";
 
 /* Configurations */
 dotenv.config();
@@ -39,6 +40,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/courses", coursesRoutes);
+app.use("/users/clerk", userClerkRoutes);
 
 /* Server */
 const PORT = process.env.PORT || 8001;
