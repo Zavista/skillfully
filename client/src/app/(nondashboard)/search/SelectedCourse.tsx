@@ -1,3 +1,4 @@
+import AccordionSections from "@/components/AccordionSections";
 import { Button } from "@/components/ui/button";
 import { formatPrice } from "@/lib/utils";
 import React from "react";
@@ -18,7 +19,7 @@ const SelectedCourse = ({ course, handleEnrollNow }: SelectedCourseProps) => {
         <p className="selected-course__description">{course.description}</p>
         <div className="selected-course__sections">
           <h4 className="selected-course__sections-title">Course Content</h4>
-          {/* According for course content here*/}
+          <AccordionSections sections={course.sections}></AccordionSections>
         </div>
 
         <div className="selected-course__footer">
