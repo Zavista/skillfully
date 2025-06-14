@@ -16,7 +16,7 @@ import {
 import coursesRoutes from "./routes/coursesRoutes";
 import userClerkRoutes from "./routes/userClerkRoutes";
 import transactionRoutes from "./routes/transactionRoutes";
-
+import userCourseProgressRoutes from "./routes/userCourseProgressRoutes";
 /* Configurations */
 dotenv.config();
 
@@ -48,6 +48,7 @@ app.get("/", (req, res) => {
 app.use("/courses", coursesRoutes);
 app.use("/users/clerk", requireAuth(), userClerkRoutes);
 app.use("/transactions", requireAuth(), transactionRoutes);
+app.use("/users/course-progress", requireAuth(), userCourseProgressRoutes);
 
 /* Server */
 const PORT = process.env.PORT || 8001;
