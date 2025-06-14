@@ -11,12 +11,15 @@ import {
   createClerkClient,
   requireAuth,
 } from "@clerk/express";
+import seed from "./seed/seedDynamodb";
+import serverless from "serverless-http";
 
 /* Routes Imports */
 import coursesRoutes from "./routes/coursesRoutes";
 import userClerkRoutes from "./routes/userClerkRoutes";
 import transactionRoutes from "./routes/transactionRoutes";
 import userCourseProgressRoutes from "./routes/userCourseProgressRoutes";
+
 /* Configurations */
 dotenv.config();
 
@@ -57,3 +60,17 @@ if (!isProduction) {
     console.log(`Server is running on http://localhost:${PORT}`);
   });
 }
+
+// AWS prod environment
+const serverlessApp = serverless(app);
+export const handler = async (event: any, context: any) => {
+  if (event.action === "seed") {
+    await seed();
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ message: "Data seeded successfully" }),
+    };
+  } else {
+    return serverlessApp(event, context);
+  }
+};
