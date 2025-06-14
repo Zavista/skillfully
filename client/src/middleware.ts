@@ -7,7 +7,7 @@ const isTeacherRoute = createRouteMatcher(["/teacher/(.*)"]);
 export default clerkMiddleware(async (auth, req) => {
   const { sessionClaims } = await auth();
   const userRole =
-    (sessionClaims?.netadata as { userType: "student" | "teacher" })
+    (sessionClaims?.publicMetadata as { userType: "student" | "teacher" })
       ?.userType || "student";
 
   if (isStudentRoute(req)) {
