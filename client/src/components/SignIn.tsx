@@ -22,7 +22,7 @@ const SignInComponent = () => {
     if (userType === "teacher") {
       return "/teacher/courses";
     } else {
-      return "/student/courses";
+      return "/user/courses";
     }
   };
 
