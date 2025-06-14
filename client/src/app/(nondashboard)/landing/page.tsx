@@ -71,8 +71,8 @@ const Landing = () => {
           <h1 className="landing__title">Courses</h1>
           <p className="landing__description">
             Discover a wide range of courses designed to help you learn and
-            grow. Whether you're looking to enhance your skills or explore new
-            topics, we have something for everyone.
+            grow. Whether you&apos;re looking to enhance your skills or explore
+            new topics, we have something for everyone.
           </p>
           <div className="landing__cta">
             <Link href="/search">
